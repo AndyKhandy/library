@@ -75,6 +75,7 @@ function displayBook()
         cardInfo.appendChild(read);
 
         let buttonDiv = document.createElement("div");
+        buttonDiv.classList.add("flex","flex-gap");
 
         let delBtn = document.createElement("button");
         delBtn.textContent = "Delete";
@@ -104,7 +105,21 @@ function displayBook()
                 myLibrary[i].read = true;
                 buttonDiv.removeChild(finishBtn);
             });
+
+            let editBtn = document.createElement("button");
+            editBtn.classList.add("edit");
+            editBtn.style["background-image"] = 'url("img/editPage.svg")';
+            editBtn.addEventListener("click",()=>{
+            let newPages = prompt("What page are you on now?");
+            if(newPages!=null && newPages != "")
+            {
+                myLibrary[i].pagesR = newPages;
+                displayBook();
+            }
+            })
+            buttonDiv.appendChild(editBtn);
         }
+
 
         card.appendChild(cardInfo);
         card.appendChild(buttonDiv);
@@ -135,3 +150,4 @@ submitBtn.addEventListener("click", (event)=> {
 
     addBookToLibrary(title,author,pages, pagesR,read);
 });
+

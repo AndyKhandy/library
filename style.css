@@ -16,6 +16,10 @@ body {
     display: flex;
 }
 
+.flex-gap {
+    gap: 5px;
+}
+
 .flex-col {
     flex-direction: column;
 }
@@ -27,7 +31,7 @@ form input {
   appearance: none;
 }
 
-.card, button {
+ button {
     cursor: pointer;
 }
 
@@ -45,7 +49,7 @@ button {
     padding: 10px;
     border-radius: 10px;
     background-color: rgb(247, 245, 240);
-    min-width: 50px;
+    min-width: 40px;
 }
 
 button:hover{
@@ -76,11 +80,6 @@ form .buttons {
 .inputSectionCheck {
     flex-direction: row;
     align-items: center;
-    gap: 5px;
-}
-
-.inputSection {
-    gap: 5px;
 }
 
 input[type="checkbox"] {
@@ -163,6 +162,15 @@ input[type="checkbox"]:checked::before
     transition: 300ms ease-in;
     position: relative;
     justify-content: space-between;
+}
+
+.book .edit {
+    margin-left: 40px;
+}
+
+.library svg {
+    width: 15px;
+    cursor: pointer;
 }
 
 .completion {
