@@ -9,44 +9,50 @@
 <body>
     <header class="flex">
         <div class="profile flex">
-            <img src="scorbunny.jpg" alt="picture of scorbunny in pokemon" width="80px">
+            <img src="img/scorbunny.jpg" alt="picture of scorbunny in pokemon" width="80px">
             <h1>My Library!</h1>
         </div>
         <div class="addBtn new">
-            <button>New Book</button>
+            <button class=>New Book
+            </button>
         </div>
     </header>
 
     <dialog id="favDialog">
         <form class="flex">
-            <div class="titleSection">
+            <div class="inputSection flex">
                 <label for="titleInput">Title</label>
                 <input type="text" id="titleInput" placeholder="Maze Runner" required>
             </div>
 
-            <div class="authorSection">
+            <div class="inputSection flex">
                 <label for="authorInput">Author</label>
                 <input type="text" id="authorInput" placeholder="James Dashner" required>
             </div>
 
-            <div class="pagesSection">
+            <div class="inputSection flex">
                 <label for="pagesInput">Pages</label>
                 <input type="number" step="100" min="100" max="5000" id="pagesInput" required>
             </div>
 
-            <div class="readSection">
+            <div class="inputSectionCheck flex">
                 <label for="readInput">Read?</label>
                 <input type="checkbox" name="read" id="readInput", value="read" required>
             </div>
 
-            <button id="cancel" value="cancel" formmethod="dialog" formnovalidate>Cancel</button>
+            <div class="buttons flex">
+                <button id="cancel" value="cancel" formmethod="dialog" formnovalidate>Cancel</button>
+
+                <button id="submit">Submit</button>
+            </div>
+
         </form>
     </dialog>
 
     <div class="main">
         <div class="library flex">
         <div class="add card new">
-            Add Book to List
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
         </div>
 
         <div class="book card">

@@ -16,6 +16,13 @@ body {
     display: flex;
 }
 
+form input {
+  font-family: inherit;
+  font-size: 100%;
+  width: 100%;
+  appearance: none;
+}
+
 .card, button {
     cursor: pointer;
 }
@@ -30,27 +37,71 @@ header {
 }
 
 
-header button {
+button {
     padding: 10px;
     border-radius: 10px;
     background-color: rgb(247, 245, 240);
 }
 
-header button:hover{
+button:hover{
     transform: scale(1.1);
 }
+
 
 dialog{
     margin: 10% auto;
     padding: 50px;
-    width: 25vw;
-    height: 40vh;
+    width: 30vw;
+    height: 50vh;
 }
 
 dialog form {
     flex-direction: column;
     justify-content: space-around;
     height: 100%;
+}
+
+form button {
+    width: 20%;
+}
+
+form .buttons {
+    justify-content: space-around;
+}
+
+.inputSectionCheck {
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.inputSection {
+    flex-direction: column;
+    gap: 5px;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    background-color: inherit;
+    border: 1px solid black;
+    position: relative;
+}
+
+input[type="checkbox"]::before {
+    content: "🔥";
+    position: absolute;
+    left: -2px;
+    bottom: 1px;
+    visibility: hidden;
+    transform: scale(0);
+    transition: 200ms ease-in;
+}
+
+input[type="checkbox"]:checked::before
+{
+    transform: scale(1);
+    visibility:visible
 }
 
 .profile {
@@ -76,8 +127,18 @@ dialog form {
     place-items: center;
 }
 
+.add.card svg {
+    width: 80px;
+    transition: 500ms ease-in;
+}
+
 .add.card:hover {
     opacity: 0.9;
+}
+
+.add.card:hover > svg {
+    rotate: 180deg;
+    fill: white;
 }
 
 .card {
@@ -90,6 +151,7 @@ dialog form {
 
 .book {
     border-bottom: 5px solid var(--main-color);
+    transition: 300ms ease-in;
 }
 
 .book:hover{
