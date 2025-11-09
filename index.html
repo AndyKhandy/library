@@ -12,14 +12,40 @@
             <img src="scorbunny.jpg" alt="picture of scorbunny in pokemon" width="80px">
             <h1>My Library!</h1>
         </div>
-        <div class="addBtn">
+        <div class="addBtn new">
             <button>New Book</button>
         </div>
     </header>
 
+    <dialog id="favDialog">
+        <form class="flex">
+            <div class="titleSection">
+                <label for="titleInput">Title</label>
+                <input type="text" id="titleInput" placeholder="Maze Runner" required>
+            </div>
+
+            <div class="authorSection">
+                <label for="authorInput">Author</label>
+                <input type="text" id="authorInput" placeholder="James Dashner" required>
+            </div>
+
+            <div class="pagesSection">
+                <label for="pagesInput">Pages</label>
+                <input type="number" step="100" min="100" max="5000" id="pagesInput" required>
+            </div>
+
+            <div class="readSection">
+                <label for="readInput">Read?</label>
+                <input type="checkbox" name="read" id="readInput", value="read" required>
+            </div>
+
+            <button id="cancel" value="cancel" formmethod="dialog" formnovalidate>Cancel</button>
+        </form>
+    </dialog>
+
     <div class="main">
         <div class="library flex">
-        <div class="add card">
+        <div class="add card new">
             Add Book to List
         </div>
 

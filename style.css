@@ -40,6 +40,19 @@ header button:hover{
     transform: scale(1.1);
 }
 
+dialog{
+    margin: 10% auto;
+    padding: 50px;
+    width: 25vw;
+    height: 40vh;
+}
+
+dialog form {
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
 .profile {
     align-items: center;
     gap: 10px;
