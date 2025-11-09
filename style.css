@@ -51,7 +51,7 @@ button:hover{
 dialog{
     margin: 10% auto;
     padding: 50px;
-    width: 30vw;
+    width: 450px;
     height: 50vh;
 }
 
@@ -117,6 +117,10 @@ input[type="checkbox"]:checked::before
 
 .library {
     padding: 20px;
+    gap: 20px;
+    flex-flow: wrap;
+}
+.library-books {
     gap: 20px;
     flex-flow: wrap;
 }
