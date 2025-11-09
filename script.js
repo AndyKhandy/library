@@ -9,27 +9,29 @@ const titleInput = document.querySelector("#titleInput");
 const authorInput = document.querySelector("#authorInput");
 const pagesInput = document.querySelector("#pagesInput");
 const readInput = document.querySelector("#readInput");
+const pagesRInput = document.querySelector("#pagesRInput");
 
 const myLibrary = [];
 
-function Book(title,author,pages,read,id)
+function Book(title,author,pages,pagesR,read,id)
 {
     this.title = title;
     this.author = author;
     this.pages = pages;
+    this.pagesR = pagesR;
     this.read = read;
     this.id = id;
 }
 
-let starterBook = new Book("Harry Potter", "J.K Rowling", 4100, false, 1);
+let starterBook = new Book("Harry Potter", "J.K Rowling", 4100, 3400, false, "1");
 
 myLibrary[0] = starterBook;
 
 displayBook();
 
-function addBookToLibrary(title,author,pages,read)
+function addBookToLibrary(title,author,pages,pagesR, read)
 {
-    let newBook = new Book(title,author,pages,read,crypto.randomUUID());
+    let newBook = new Book(title,author,pages,pagesR,read,crypto.randomUUID());
     myLibrary.push(newBook);
     displayBook();
 }
@@ -45,31 +47,67 @@ function displayBook()
     for(let i = 0; i < myLibrary.length; i++)
     {
          let card = document.createElement("div");
-
-        card.classList.add("book", "card");
+        card.classList.add("book", "card", "flex", "flex-col");
         card.dataset.bookId = myLibrary[i].id;
 
-        let title = document.createElement("h2");
+        let cardInfo = document.createElement("div");
 
+        let completed = document.createElement("p");
+        completed.classList.add("completion");
+        completed.textContent = `${Math.floor(myLibrary[i].pagesR/myLibrary[i].pages*100)}% Done`
+
+        let title = document.createElement("h2");
         title.textContent = myLibrary[i].title;
 
         let author = document.createElement("h3");
-
         author.textContent = `Author: ${myLibrary[i].author}`;
 
         let pages = document.createElement("h3");
-
-        pages.textContent = `Pages: ${myLibrary[i].pages}`;
+        pages.textContent = `Pages: ${myLibrary[i].pagesR}/${myLibrary[i].pages}`;
 
         let read = document.createElement("h3");
-
         read.textContent = `Read: ${myLibrary[i].read ? "Yes" : "No"}`;
 
-        card.appendChild(title);
-        card.appendChild(author);
-        card.appendChild(pages);
-        card.appendChild(read);
+        cardInfo.appendChild(completed);
+        cardInfo.appendChild(title);
+        cardInfo.appendChild(author);
+        cardInfo.appendChild(pages);
+        cardInfo.appendChild(read);
 
+        let buttonDiv = document.createElement("div");
+
+        let delBtn = document.createElement("button");
+        delBtn.textContent = "Delete";
+        delBtn.addEventListener("click", ()=>{
+            for(let j = 0; j < myLibrary.length; j++)
+            {
+                if(card.dataset.bookId === myLibrary[j].id)
+                {
+                   myLibrary.splice(j,1);
+                   break;
+                }
+            }
+            libraryDisplay.removeChild(card);
+            displayBook();
+        });
+
+        buttonDiv.appendChild(delBtn);
+
+        if(!myLibrary[i].read)
+        {
+            let finishBtn = document.createElement("button");
+            finishBtn.classList.add("finish");
+            finishBtn.textContent = "Finish";
+            buttonDiv.appendChild(finishBtn);
+            finishBtn.addEventListener("click", ()=>{
+                read.textContent = `Read: Yes`;
+                myLibrary[i].read = true;
+                buttonDiv.removeChild(finishBtn);
+            });
+        }
+
+        card.appendChild(cardInfo);
+        card.appendChild(buttonDiv);
         libraryDisplay.appendChild(card);
     }
 }
@@ -86,13 +124,14 @@ submitBtn.addEventListener("click", (event)=> {
     let title = titleInput.value;
     let author = authorInput.value;
     let pages = pagesInput.value;
-    let read = readInput.value;
+    let read = readInput.checked;
+    let pagesR = pagesRInput.value;
 
     titleInput.value = "";
     authorInput.value = "";
     pagesInput.value = "";
     readInput.checked = false;
+    pagesRInput.value = "";
 
-
-    addBookToLibrary(title,author,pages,read);
+    addBookToLibrary(title,author,pages, pagesR,read);
 });

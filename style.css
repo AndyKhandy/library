@@ -16,6 +16,10 @@ body {
     display: flex;
 }
 
+.flex-col {
+    flex-direction: column;
+}
+
 form input {
   font-family: inherit;
   font-size: 100%;
@@ -41,6 +45,7 @@ button {
     padding: 10px;
     border-radius: 10px;
     background-color: rgb(247, 245, 240);
+    min-width: 50px;
 }
 
 button:hover{
@@ -56,7 +61,6 @@ dialog{
 }
 
 dialog form {
-    flex-direction: column;
     justify-content: space-around;
     height: 100%;
 }
@@ -76,7 +80,6 @@ form .buttons {
 }
 
 .inputSection {
-    flex-direction: column;
     gap: 5px;
 }
 
@@ -120,6 +123,7 @@ input[type="checkbox"]:checked::before
     gap: 20px;
     flex-flow: wrap;
 }
+
 .library-books {
     gap: 20px;
     flex-flow: wrap;
@@ -150,12 +154,27 @@ input[type="checkbox"]:checked::before
     width: 250px;
     height: 300px;
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px;
+    padding-top: 20px;
 }
 
 .book {
     border-bottom: 5px solid var(--main-color);
     transition: 300ms ease-in;
+    position: relative;
+    justify-content: space-between;
+}
+
+.completion {
+    visibility: hidden;
+    transition: 50ms ease-in;
+    transform: scale(0);
+    transform-origin: center;
+}
+
+.book:hover .completion {
+    visibility:visible;
+    transform: scale(1);
 }
 
 .book:hover{
