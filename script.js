@@ -158,13 +158,8 @@ promptAddBook.forEach(element => {
 });
 
 submitBtn.addEventListener("click", (event)=> {
-    if (!form.checkValidity()) {
-        form.reportValidity(); 
-        return;
-    }
-
-    event.preventDefault();
     favDialog.close();
+    event.preventDefault();
 
     let title = titleInput.value;
     let author = authorInput.value;
