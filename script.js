@@ -10,8 +10,12 @@ const authorInput = document.querySelector("#authorInput");
 const pagesInput = document.querySelector("#pagesInput");
 const readInput = document.querySelector("#readInput");
 const pagesRInput = document.querySelector("#pagesRInput");
+const meter = document.querySelector("header .goal-meter");
+const meterText = document.querySelector(".goal h2");
 
 const myLibrary = [];
+let currentBooks = 5;
+let goalBooks = 10;
 
 function Book(title,author,pages,pagesR,read,id)
 {
@@ -39,6 +43,13 @@ function addBookToLibrary(title,author,pages,pagesR, read)
 function clearLibrary()
 {
     libraryDisplay.innerHTML = "";
+}
+
+function changeMeter()
+{
+    meterText.textContent = `${currentBooks}/${goalBooks} Books`;
+    let newPercentage = currentBooks / goalBooks * 100;
+    meter.style.setProperty("--fill-width",`${newPercentage}%`);
 }
 
 function displayBook()
@@ -104,6 +115,8 @@ function displayBook()
                 read.textContent = `Read: Yes`;
                 myLibrary[i].read = true;
                 buttonDiv.removeChild(finishBtn);
+                currentBooks++;
+                changeMeter();
             });
 
             let editBtn = document.createElement("button");
@@ -141,6 +154,12 @@ submitBtn.addEventListener("click", (event)=> {
     let pages = pagesInput.value;
     let read = readInput.checked;
     let pagesR = pagesRInput.value;
+
+    if(read)
+    {
+        currentBooks++;
+        changeMeter();
+    }
 
     titleInput.value = "";
     authorInput.value = "";
