@@ -47,6 +47,7 @@ function clearLibrary()
 
 function changeMeter()
 {
+    currentBooks++;
     meterText.textContent = `${currentBooks}/${goalBooks} Books`;
     let newPercentage = currentBooks / goalBooks * 100;
     meter.style.setProperty("--fill-width",`${newPercentage}%`);
@@ -108,28 +109,38 @@ function displayBook()
         if(!myLibrary[i].read)
         {
             let finishBtn = document.createElement("button");
+
             finishBtn.classList.add("finish");
             finishBtn.textContent = "Finish";
             buttonDiv.appendChild(finishBtn);
-            finishBtn.addEventListener("click", ()=>{
+
+             let editBtn = document.createElement("button");
+             editBtn.classList.add("edit");
+             editBtn.style["background-image"] = 'url("img/editPage.svg")';
+
+             finishBtn.addEventListener("click", ()=>{
                 read.textContent = `Read: Yes`;
                 myLibrary[i].read = true;
                 buttonDiv.removeChild(finishBtn);
-                currentBooks++;
+                buttonDiv.removeChild(editBtn);
                 changeMeter();
             });
 
-            let editBtn = document.createElement("button");
-            editBtn.classList.add("edit");
-            editBtn.style["background-image"] = 'url("img/editPage.svg")';
             editBtn.addEventListener("click",()=>{
             let newPages = prompt("What page are you on now?");
-            if(newPages!=null && newPages != "")
+            if(newPages != null && newPages != "" && newPages <= myLibrary[i].pages && newPages > 0)
             {
                 myLibrary[i].pagesR = newPages;
+                if(newPages == myLibrary[i].pages)
+                {
+                    const clickEvent = new Event("click");
+                    finishBtn.dispatchEvent(clickEvent);
+                    changeMeter();
+                }
                 displayBook();
             }
             })
+
             buttonDiv.appendChild(editBtn);
         }
 
@@ -147,8 +158,14 @@ promptAddBook.forEach(element => {
 });
 
 submitBtn.addEventListener("click", (event)=> {
+    if (!form.checkValidity()) {
+        form.reportValidity(); 
+        return;
+    }
+
     event.preventDefault();
     favDialog.close();
+
     let title = titleInput.value;
     let author = authorInput.value;
     let pages = pagesInput.value;
@@ -157,7 +174,6 @@ submitBtn.addEventListener("click", (event)=> {
 
     if(read)
     {
-        currentBooks++;
         changeMeter();
     }
 
@@ -168,5 +184,6 @@ submitBtn.addEventListener("click", (event)=> {
     pagesRInput.value = "";
 
     addBookToLibrary(title,author,pages, pagesR,read);
+
 });
 
