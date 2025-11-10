@@ -2,7 +2,6 @@ const promptAddBook = document.querySelectorAll(".new");
 
 const favDialog = document.querySelector("#favDialog");
 const cancelBtn = document.querySelector("#cancel");
-const submitBtn = document.querySelector("#submit");
 const libraryDisplay = document.querySelector(".library-books");
 
 const titleInput = document.querySelector("#titleInput");
@@ -12,6 +11,7 @@ const readInput = document.querySelector("#readInput");
 const pagesRInput = document.querySelector("#pagesRInput");
 const meter = document.querySelector("header .goal-meter");
 const meterText = document.querySelector(".goal h2");
+const form = document.querySelector("#bookForm");
 
 const myLibrary = [];
 let currentBooks = 5;
@@ -157,9 +157,13 @@ promptAddBook.forEach(element => {
     });
 });
 
-submitBtn.addEventListener("click", (event)=> {
+cancelBtn.addEventListener("click", (e)=>{
     favDialog.close();
-    event.preventDefault();
+    form.reset();
+});
+
+form.addEventListener("submit", (e)=>{
+     e.preventDefault();
 
     let title = titleInput.value;
     let author = authorInput.value;
@@ -172,13 +176,8 @@ submitBtn.addEventListener("click", (event)=> {
         changeMeter();
     }
 
-    titleInput.value = "";
-    authorInput.value = "";
-    pagesInput.value = "";
-    readInput.checked = false;
-    pagesRInput.value = "";
-
     addBookToLibrary(title,author,pages, pagesR,read);
-
-});
+    form.reset();
+    favDialog.close();
+})
 

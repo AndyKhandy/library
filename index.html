@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odin Library</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+25&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -28,7 +32,7 @@
     </header>
 
     <dialog id="favDialog">
-        <form class="flex flex-col">
+        <form class="flex flex-col" id="bookForm">
             <div class="inputSection flex flex-col flex-gap">
                 <label for="titleInput">Title</label>
                 <input type="text" id="titleInput" placeholder="Maze Runner" required>
@@ -41,12 +45,12 @@
 
             <div class="inputSection flex flex-col flex-gap">
                 <label for="pagesInput">Pages</label>
-                <input type="number" step="1" min="100" max="5000" id="pagesInput" required>
+                <input type="number" step="1" min="100" max="6000" id="pagesInput" placeholder="500" required>
             </div>
 
             <div class="inputSection flex flex-col flex-gap">
                 <label for="pagesRInput">Pages Read</label>
-                <input type="number" step="1" min="1" max="5000" id="pagesRInput" required>
+                <input type="number" step="1" min="1" max="5000" id="pagesRInput" placeholder="300" required>
             </div>
 
             <div class="inputSectionCheck flex flex-col flex-gap">
@@ -54,8 +58,8 @@
                 <input type="checkbox" name="read" id="readInput" value="read">
             </div>
 
-            <div class="buttons flex">
-                <button id="cancel" value="cancel" formmethod="dialog" formnovalidate>Cancel</button>
+            <div class="buttons flex flex-gap">
+               <button type="button" id="cancel">Cancel</button>
 
                 <button type="submit" id="submit">Submit</button>
             </div>
