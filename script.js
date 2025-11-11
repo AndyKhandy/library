@@ -26,6 +26,7 @@ function Book(title,author,pages,pagesR,read,id)
     this.read = read;
     this.id = id;
     this.goal = false;
+    this.heart = false;
 }
 
 let starterBook = new Book("Harry Potter", "J.K Rowling", 4100, 3400, false, "1");
@@ -81,10 +82,6 @@ function displayBook()
 
         let read = document.createElement("h3");
         read.textContent = `Read: ${myLibrary[i].read ? "Yes" : "No"}`;
-        if (myLibrary[i].read){
-            changeMeter();
-            myLibrary[i].goal = true;
-        }
 
         let heart = document.createElement("button");
         heart.classList.add("heart", "bookBtn");
@@ -150,7 +147,17 @@ function displayBook()
             }
 
             myLibrary[i].read ? read.textContent = "Read: Yes" : read.textContent = "Read: No";
+            finishBtn.classList.toggle("active");
         });
+
+        if (myLibrary[i].read){
+            if(myLibrary[i].goal == false)
+            {
+                changeMeter();
+                myLibrary[i].goal = true;
+            }
+            finishBtn.classList.add("active");
+        }
 
         editBtn.addEventListener("click",(event)=>{
             event.stopPropagation();

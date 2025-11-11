@@ -281,7 +281,7 @@ input[type="checkbox"]:checked::before
     --icon-color: var(--main-color);
 }
 
-.book .finish:hover{
+.book .finish:hover, .book .finish.active{
     --icon-color: rgb(50, 157, 176);
 }
 
