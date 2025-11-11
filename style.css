@@ -273,7 +273,7 @@ input[type="checkbox"]:checked::before
     top: -0px;
 }
 
-.book .heart:hover{
+.book .heart:hover, .book .heart.active{
     --icon-color: rgb(210, 61, 178);
 }
 
