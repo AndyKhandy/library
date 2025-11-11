@@ -256,6 +256,7 @@ input[type="checkbox"]:checked::before
 
     header .profile {
         grid-column: 1 / span 2;
+         margin-left: 10%;
     }
 
     header .addBtn {
