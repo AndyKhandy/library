@@ -29,9 +29,11 @@ function Book(title,author,pages,pagesR,read,id)
     this.heart = false;
 }
 
-let starterBook = new Book("Harry Potter", "J.K Rowling", 4100, 3400, false, "1");
+let starterBook = new Book("Harry Potter Series", "J.K Rowling", 4100, 3400, false, "1");
+let starterBook2 = new Book("Scythe", "Neal Shusterman", 464, 464, true, "2");
 
 myLibrary[0] = starterBook;
+myLibrary[1] = starterBook2;
 
 displayBook();
 
