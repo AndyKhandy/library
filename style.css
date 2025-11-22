@@ -114,7 +114,7 @@ header .goal-meter::after{
 dialog{
     margin: 10% auto;
     padding: 20px;
-    width: max(200px,50vw);
+    width: max(600px,50vw);
     height: 55vh;
     border-radius: 5px;
 }
@@ -151,8 +151,8 @@ input[type="checkbox"] {
 input[type="checkbox"]::before {
     content: "🔥";
     position: absolute;
-    left: -2px;
-    bottom: 1px;
+    left: -35%;
+    bottom: 1%;
     visibility: hidden;
     transform: scale(0);
     transition: 200ms ease-in;
@@ -209,8 +209,8 @@ input[type="checkbox"]:checked::before
 
 .card {
     background-color: rgb(238, 234, 234);
-    width: 250px;
-    height: 300px;
+    width: max(300px, 15vw);
+    height: max(300px, 35vh);
     border-radius: 10px;
     padding: 20px;
     padding-top: 20px;
@@ -328,6 +328,10 @@ input[type="checkbox"]:checked::before
     header .goal {
         margin-left: 15%;
         grid-area: 2 / 1 / 2 / 5;
+    }
+
+    dialog{
+        width: max(200px,80vw);
     }
 
 }

@@ -17,17 +17,22 @@ const myLibrary = [];
 let currentBooks = 5;
 let goalBooks = 10;
 
-function Book(title,author,pages,pagesR,read,id)
+class Book
 {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.pagesR = pagesR;
-    this.read = read;
-    this.id = id;
-    this.goal = false;
-    this.heart = false;
+    goal = false;
+    heart = false;
+    
+    constructor(title,author,pages,pagesR,read, id){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.pagesR = pagesR;
+        this.read = read;
+        this.id = id;
+    }
+
 }
+
 
 let starterBook = new Book("Harry Potter Series", "J.K Rowling", 4100, 3400, false, "1");
 let starterBook2 = new Book("Scythe", "Neal Shusterman", 464, 464, true, "2");
