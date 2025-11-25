@@ -14,11 +14,21 @@ const pagesRInput = document.querySelector("#pagesRInput");
 const meter = document.querySelector("header .goal-meter");
 const meterText = document.querySelector(".goal h2");
 const form = document.querySelector("#bookForm");
+const libraryTitle = document.querySelector("#title");
+const settingsImg = document.querySelector("#menu");
 
+const settingsData = JSON.parse(localStorage.getItem("libraryData"));
 
-const myLibrary = [];
-let currentBooks = 0;
-let goalBooks = 10;
+let libraryName = settingsData.userLibraryName || "My";
+let currentBooks = settingsData.read || 0;
+let goalBooks = settingsData.goal || 10;
+let menu = false;
+
+libraryTitle.textContent = libraryName + " Library";
+
+const libraryData = JSON.parse(localStorage.getItem("libraryBooks"));
+
+const myLibrary = libraryData || [];
 
 class Book
 {
@@ -35,9 +45,20 @@ class Book
     }
 }
 
-meterText.textContent = `${currentBooks}/${goalBooks} Books`;
-let newPercentage = currentBooks / goalBooks * 100;
-meter.style.setProperty("--fill-width",`${newPercentage}%`);
+window.addEventListener("beforeunload",(e)=>{
+    settingsData.read = currentBooks;
+    localStorage.setItem("libraryData", JSON.stringify(settingsData));
+    localStorage.setItem("libraryBooks", JSON.stringify(myLibrary));
+
+    if(!menu)
+    {
+        e.preventDefault();
+    }
+});
+
+
+currentBooks--;
+changeMeter();
 
 let starterBook = new Book("Harry Potter Series", "J.K Rowling", 4100, 3400, false, "1");
 let starterBook2 = new Book("Scythe", "Neal Shusterman", 464, 464, false, "2");
@@ -211,6 +232,10 @@ function displayBook()
     }
 }
 
+settingsImg.addEventListener("click", ()=>{
+    menu = true;
+    window.location.href = 'settings.html';
+})
 
 promptAddBook.forEach(element => {
     element.addEventListener("click", () => {
