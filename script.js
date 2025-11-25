@@ -1,3 +1,5 @@
+
+
 const promptAddBook = document.querySelectorAll(".new");
 
 const favDialog = document.querySelector("#favDialog");
@@ -12,6 +14,7 @@ const pagesRInput = document.querySelector("#pagesRInput");
 const meter = document.querySelector("header .goal-meter");
 const meterText = document.querySelector(".goal h2");
 const form = document.querySelector("#bookForm");
+
 
 const myLibrary = [];
 let currentBooks = 0;
