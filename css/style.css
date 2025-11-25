@@ -213,7 +213,7 @@ input[type="checkbox"]:checked::before
     opacity: 0.9;
 }
 
-.add.card:hover > svg, .right-menu svg:hover {
+.add.card:hover > svg, .right-menu a svg:hover {
     rotate: 180deg;
     fill: white;
 }
