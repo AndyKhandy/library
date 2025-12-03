@@ -25,6 +25,7 @@ let menu = false;
 
 let myLibrary = [];
 
+//PLACE CLASS HERE SO STARTER BOOKS CAN BE INITIALIZED
 class Book
 {
     goal = false;
@@ -47,12 +48,14 @@ if(settingsData != null)
     goalBooks = settingsData.goal || 10;
     libraryTitle.textContent = libraryName + " library";
     currentBooks--;
+    changeMeter();
 }
 
 if(libraryData != null)
 {
     myLibrary = libraryData || [];
 } else{
+    //STARTER BOOKS NOT INITIALIZED!
     let starterBook = new Book("Harry Potter Series", "J.K Rowling", 4100, 3400, false, "1");
     let starterBook2 = new Book("Scythe", "Neal Shusterman", 464, 464, false, "2");
 
@@ -60,8 +63,6 @@ if(libraryData != null)
     myLibrary[1] = starterBook2;
 }
 
-
-changeMeter();
 
 
 window.addEventListener("beforeunload",(e)=>{
