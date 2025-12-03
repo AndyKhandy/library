@@ -12,10 +12,42 @@ const pagesRInput = document.querySelector("#pagesRInput");
 const meter = document.querySelector("header .goal-meter");
 const meterText = document.querySelector(".goal h2");
 const form = document.querySelector("#bookForm");
+const libraryTitle = document.querySelector("#title");
+const settingsImg = document.querySelector("#menu");
 
-const myLibrary = [];
+const settingsData = JSON.parse(localStorage.getItem("libraryData"));
+const libraryData = JSON.parse(localStorage.getItem("libraryBooks"));
+
+
 let currentBooks = 0;
 let goalBooks = 10;
+let menu = false;
+
+let myLibrary = [];
+
+if(settingsData != null)
+{
+    let libraryName = settingsData.userLibraryName || "My";
+    currentBooks = settingsData.read || 0;
+    goalBooks = settingsData.goal || 10;
+    libraryTitle.textContent = libraryName + " library";
+    currentBooks--;
+}
+
+if(libraryData != null)
+{
+    myLibrary = libraryData || [];
+} else{
+    let starterBook = new Book("Harry Potter Series", "J.K Rowling", 4100, 3400, false, "1");
+    let starterBook2 = new Book("Scythe", "Neal Shusterman", 464, 464, false, "2");
+
+    myLibrary[0] = starterBook;
+    myLibrary[1] = starterBook2;
+}
+
+
+changeMeter();
+
 
 class Book
 {
@@ -32,15 +64,17 @@ class Book
     }
 }
 
-meterText.textContent = `${currentBooks}/${goalBooks} Books`;
-let newPercentage = currentBooks / goalBooks * 100;
-meter.style.setProperty("--fill-width",`${newPercentage}%`);
+window.addEventListener("beforeunload",(e)=>{
+    settingsData.read = currentBooks;
+    localStorage.setItem("libraryData", JSON.stringify(settingsData));
+    localStorage.setItem("libraryBooks", JSON.stringify(myLibrary));
 
-let starterBook = new Book("Harry Potter Series", "J.K Rowling", 4100, 3400, false, "1");
-let starterBook2 = new Book("Scythe", "Neal Shusterman", 464, 464, false, "2");
+    if(!menu)
+    {
+        e.preventDefault();
+    }
+});
 
-myLibrary[0] = starterBook;
-myLibrary[1] = starterBook2;
 
 displayBook();
 
@@ -208,6 +242,10 @@ function displayBook()
     }
 }
 
+settingsImg.addEventListener("click", ()=>{
+    menu = true;
+    window.location.href = 'settings.html';
+})
 
 promptAddBook.forEach(element => {
     element.addEventListener("click", () => {

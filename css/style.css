@@ -92,7 +92,7 @@ header .goal-meter{
 header .goal-meter::before {
     content: "";
     width: var(--fill-width);
-    height: 20px;
+    height: 100%;
     display: block;
     border-radius: 5px;
     background-color: var(--secondary-color);
@@ -213,7 +213,7 @@ input[type="checkbox"]:checked::before
     opacity: 0.9;
 }
 
-.add.card:hover > svg, .right-menu a svg:hover {
+.add.card:hover > svg, .right-menu svg:hover {
     rotate: 180deg;
     fill: white;
 }
