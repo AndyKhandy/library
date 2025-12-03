@@ -25,6 +25,21 @@ let menu = false;
 
 let myLibrary = [];
 
+class Book
+{
+    goal = false;
+    heart = false;
+    
+    constructor(title,author,pages,pagesR,read, id){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.pagesR = pagesR;
+        this.read = read;
+        this.id = id;
+    }
+}
+
 if(settingsData != null)
 {
     let libraryName = settingsData.userLibraryName || "My";
@@ -48,21 +63,6 @@ if(libraryData != null)
 
 changeMeter();
 
-
-class Book
-{
-    goal = false;
-    heart = false;
-    
-    constructor(title,author,pages,pagesR,read, id){
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-        this.pagesR = pagesR;
-        this.read = read;
-        this.id = id;
-    }
-}
 
 window.addEventListener("beforeunload",(e)=>{
     settingsData.read = currentBooks;
