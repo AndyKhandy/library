@@ -54,15 +54,7 @@ if(settingsData != null)
 if(libraryData != null)
 {
     myLibrary = libraryData || [];
-} else{
-    //STARTER BOOKS NOT INITIALIZED!
-    let starterBook = new Book("Harry Potter Series", "J.K Rowling", 4100, 3400, false, "1");
-    let starterBook2 = new Book("Scythe", "Neal Shusterman", 464, 464, false, "2");
-
-    myLibrary[0] = starterBook;
-    myLibrary[1] = starterBook2;
 }
-
 
 
 window.addEventListener("beforeunload",(e)=>{
