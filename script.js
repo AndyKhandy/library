@@ -47,7 +47,6 @@ if(settingsData != null)
     currentBooks = settingsData.read || 0;
     goalBooks = settingsData.goal || 10;
     libraryTitle.textContent = libraryName;
-    currentBooks--;
     changeMeter();
 }
 
@@ -93,7 +92,6 @@ function clearLibrary()
 
 function changeMeter()
 {
-    currentBooks++;
     meterText.textContent = `${currentBooks}/${goalBooks} Books`;
     newPercentage = currentBooks / goalBooks * 100;
     meter.style.setProperty("--fill-width",`${newPercentage}%`);
@@ -193,6 +191,7 @@ function displayBook()
             event.stopPropagation();
             if(myLibrary[i].read == false && myLibrary[i].goal == false)
             {
+                currentBooks++;
                 changeMeter();
                 myLibrary[i].read = true;
                 myLibrary[i].goal = true;
@@ -208,6 +207,7 @@ function displayBook()
         if (myLibrary[i].read){
             if(myLibrary[i].goal == false)
             {
+                currentBooks++;
                 changeMeter();
                 myLibrary[i].goal = true;
             }

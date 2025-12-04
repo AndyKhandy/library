@@ -86,7 +86,7 @@ header .goal-meter{
     border-radius: 10px;
     position: relative;
     border: 5px solid black;
-    --fill-width: calc(5/10 * 100%);
+    --fill-width: calc(1/10 * 100%);
 }
 
 header .goal-meter::before {
