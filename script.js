@@ -43,10 +43,10 @@ class Book
 
 if(settingsData != null)
 {
-    let libraryName = settingsData.userLibraryName || "My";
+    let libraryName = settingsData.userLibraryName || "My Library";
     currentBooks = settingsData.read || 0;
     goalBooks = settingsData.goal || 10;
-    libraryTitle.textContent = libraryName + " library";
+    libraryTitle.textContent = libraryName;
     currentBooks--;
     changeMeter();
 }
@@ -66,7 +66,6 @@ if(libraryData != null)
 window.addEventListener("beforeunload",(e)=>{
     settingsData.read = currentBooks;
     localStorage.setItem("libraryData", JSON.stringify(settingsData));
-    localStorage.setItem("libraryBooks", JSON.stringify(myLibrary));
 
     if(!menu)
     {
@@ -81,6 +80,8 @@ function addBookToLibrary(title,author,pages,pagesR, read)
 {
     let newBook = new Book(title,author,pages,pagesR,read,crypto.randomUUID());
     myLibrary.push(newBook);
+    //update local storage each time when a book is added since beforeunload may not work on mobile applications
+    localStorage.setItem("libraryBooks", JSON.stringify(myLibrary));
     displayBook();
 }
 
