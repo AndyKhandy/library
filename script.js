@@ -66,6 +66,7 @@ if(libraryData != null)
 window.addEventListener("beforeunload",(e)=>{
     settingsData.read = currentBooks;
     localStorage.setItem("libraryData", JSON.stringify(settingsData));
+    localStorage.setItem("libraryBooks", JSON.stringify(myLibrary));
 
     if(!menu)
     {
