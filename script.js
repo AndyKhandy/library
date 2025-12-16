@@ -260,7 +260,13 @@ cancelBtn.addEventListener("click", (e)=>{
 });
 
 form.addEventListener("submit", (e)=>{
-     e.preventDefault();
+    e.preventDefault();
+    validateInputs();
+
+    if(!form.reportValidity())
+    {
+        return;
+    }
 
     let title = titleInput.value;
     let author = authorInput.value;
@@ -271,5 +277,33 @@ form.addEventListener("submit", (e)=>{
     addBookToLibrary(title,author,pages, pagesR,read);
     form.reset();
     favDialog.close();
-})
+});
+
+function validateInputs()
+{
+    titleInput.setCustomValidity("");
+    authorInput.setCustomValidity("");
+    pagesInput.setCustomValidity("");
+    pagesRInput.setCustomValidity("");
+
+    if(titleInput.validity.valueMissing)
+    {
+        titleInput.setCustomValidity("Please enter a book title!");
+    }
+
+    if(authorInput.validity.valueMissing)
+    {
+        authorInput.setCustomValidity("Please enter the book author!");
+    }
+
+      if (pagesInput.validity.valueMissing) {
+    pagesInput.setCustomValidity("Please enter total pages.");
+  } else if (pagesInput.validity.rangeUnderflow) {
+    pagesInput.setCustomValidity("Pages must be greater than 0.");
+  }
+
+  if (pagesRInput.value > pagesInput.value) {
+    pagesRInput.setCustomValidity("Pages read cannot exceed total pages.");
+  }
+}
 
